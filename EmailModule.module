@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Implements hook_help().
+ *
+ * Displays help and module information.
+ *
+ * @param path 
+ *   Which path of the site we're using to display help
+ * @param arg 
+ *   Array that holds the current path as returned from arg() function
+ */
+function EmailModule_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#erintModule":
+      return '<p>' . t("Block to send a email to contact person of a product or research group.") . '</p>';
+      break;
+  }
+} 
+function printModule_block_info()
+{
+	 $blocks['email'] = array(
+    // The name that will appear in the block list.
+    'info' => t('Email to contact person of product or research group.'),
+    // Default setting.
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+  return $blocks;
+}
+function printModule_block_view($delta="")
+{
+	 $block['subject'] = t('Email Block.');
+	 
+	 return $block;
+}
