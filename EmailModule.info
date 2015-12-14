@@ -2,7 +2,7 @@ name = Email Block
 description = Modulo para enviar correos a los responsables del grupo de investigacion o el producto.	
 core = 7.x
 
-;;stylesheets[all][] = css/css.css
+stylesheets[all][] = css/email.css
 
 
 ;;scripts[] = 'js/scripts.js'
