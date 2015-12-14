@@ -17,7 +17,7 @@ function EmailModule_help($path, $arg) {
       break;
   }
 } 
-function printModule_block_info()
+function EmailModule_block_info()
 {
 	 $blocks['email'] = array(
     // The name that will appear in the block list.
@@ -27,9 +27,27 @@ function printModule_block_info()
   );
   return $blocks;
 }
-function printModule_block_view($delta="")
+function EmailModule_block_view($delta="")
 {
-	 $block['subject'] = t('Email Block.');
-	 
+	 $block['subject'] = "";
+	 $block['content'] = theme("EmailModule_block",array("email" => get_email_responsible()));
+
+	
 	 return $block;
+}
+
+function EmailModule_theme()
+{
+	return array
+	(
+		"EmailModule_block" => array
+		(
+			"template" => "templates/block",
+		),
+	);
+}
+
+function get_email_responsible()
+{
+	return menu_get_object()->field_email["und"][0]["value"];
 }
