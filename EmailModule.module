@@ -30,7 +30,8 @@ function EmailModule_block_info()
 function EmailModule_block_view($delta="")
 {
 	 $block['subject'] = "";
-	 $block['content'] = theme("EmailModule_block",array("email" => get_email_responsible()));
+	 //$block['content'] = theme("EmailModule_block",array("email" => get_email_responsible()));
+	 $block['content'] = drupal_get_form("responsible_email_form");
 
 	
 	 return $block;
@@ -51,3 +52,111 @@ function get_email_responsible()
 {
 	return menu_get_object()->field_email["und"][0]["value"];
 }
+
+function responsible_email_form($form)
+{
+	
+	$title=t('I have read and acept').' <b><a href="">'.t('the privacy polity').'</a></b>';
+
+	$form["#id"]="responsible-email-form";
+	$form["name"]=array(
+		'#type' => 'textfield',
+		'#required' => TRUE,
+		'#weight' => 0,
+		"#attributes" =>array('placeholder' => t("Name") ),
+		);
+	$form["email"]=array(
+		'#type' => 'textfield',
+		'#required' => TRUE,
+		'#weight' => 1,
+		"#attributes" =>array('placeholder' => "Email" ),
+		);
+	$form["telephone"]=array(
+		'#type' => 'textfield',
+		'#required' => TRUE,
+		'#weight' => 2,
+		"#attributes" =>array('placeholder' => t("Telephone") ),
+		);
+	$form["subject"]=array(
+		'#type' => 'textfield',
+		'#required' => TRUE,
+		'#weight' => 3,
+		"#attributes" =>array('placeholder' => t("Subject") ),
+		);
+	$form["message"]=array(
+		'#type' => 'textarea',
+		'#required' => TRUE,
+		"#rows" => 6,
+		'#weight' => 4,
+		"#attributes" =>array('placeholder' => t("Message") ),
+		);
+	$form["polity"]=array(
+		'#type' => 'checkbox',
+		"#title" => $title,
+		'#required' => TRUE,
+		'#weight' => 5,
+		);
+	/*$form["submit_button"]=array(
+		'#type' => 'submit',
+		'#value' => t("Send"),
+		'#weight' => 6,
+		
+		);*/
+	$form['actions'] = array('#type' => 'actions');
+	  $form['actions']['submit'] = array('#type' => 'submit',
+	    '#value' => t('Send'),
+	  );
+	return $form;
+}
+function responsible_email_form_validate($form,&$form_state)
+{
+	dpm($form_state);
+
+	if(!is_string($form_state["values"]["name"]))
+	{
+		form_set_error('name', t('The name must not contain numbers.'));
+	}
+	if(!is_numeric($form_state["values"]["telephone"]))
+	{
+		form_set_error('telephone', t('The telephone must be a number.'));
+	}
+
+}
+function responsible_email_form_submit($form,&$form_state)
+{
+	//EmailModule_mail_send($form_state["values"]);
+}
+
+function EmailModule_mail_send($values)
+{
+	drupal_set_message(t('Your message has been sent.'));
+}
+/*
+function user_login_block($form) {
+  $form['#action'] = url(current_path(), array('query' => drupal_get_destination(), 'external' => FALSE));
+  $form['#id'] = 'user-login-form';
+  $form['#validate'] = user_login_default_validators();
+  $form['#submit'][] = 'user_login_submit';
+  $form['name'] = array('#type' => 'textfield',
+    '#title' => t('Username'),
+    '#maxlength' => USERNAME_MAX_LENGTH,
+    '#size' => 15,
+    '#required' => TRUE,
+  );
+  $form['pass'] = array('#type' => 'password',
+    '#title' => t('Password'),
+    '#size' => 15,
+    '#required' => TRUE,
+  );
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array('#type' => 'submit',
+    '#value' => t('Log in'),
+  );
+  $items = array();
+  if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
+    $items[] = l(t('Create new account'), 'user/register', array('attributes' => array('title' => t('Create a new user account.'))));
+  }
+  $items[] = l(t('Request new password'), 'user/password', array('attributes' => array('title' => t('Request new password via e-mail.'))));
+  $form['links'] = array('#markup' => theme('item_list', array('items' => $items)));
+  return $form;
+}*/

@@ -1,3 +1,5 @@
+<!-- El codigo en este archivo es meramente orientativo, el bloque se ha desacoplado usando un formulario creado con la api de drupal -->
+
   <div class ="col-lg-12 contacto">
     <p><?php echo t("Do you need any further information?");?> </p>
 

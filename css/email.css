@@ -1,5 +1,9 @@
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto,
-.node-type-producto #block-emailmodule-email .contacto
+#block-emailmodule-email #responsible-email-form label,
+#block-emailmodule-email #responsible-email-form .grippie
+{
+	display: none;
+}
+#block-emailmodule-email #responsible-email-form
 {
     text-align: center;
     margin-top: 30px;
@@ -10,13 +14,13 @@
     padding: 47px 0px 47px 0px;
 
 }
-.node-type-producto #block-emailmodule-email .contacto
+.node-type-producto #block-emailmodule-email #responsible-email-form,
+.node-type-patente #block-emailmodule-email #responsible-email-form
 {
 	background-image: url("../images/INCONO_INFORMACION.png");
+	background-color: #e2eaf4;
 }
-
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto>p,
-.node-type-producto #block-emailmodule-email .contacto > p
+ #block-emailmodule-email #responsible-email-form > p
 {
 
 	font-family: Arial, Helvetica, sans-serif;
@@ -26,8 +30,8 @@
 	margin-bottom: 22px;
 
 }
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto #textForm,
-.node-type-producto #block-emailmodule-email .contacto #textForm
+#block-emailmodule-email #responsible-email-form input[type="text"],
+#block-emailmodule-email #responsible-email-form textarea
 {
 	width: 315px;
 	margin: 0px 0px 10px 0px;
@@ -61,8 +65,7 @@
 }
 
 
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto button,
-.node-type-producto #block-emailmodule-email .contacto button
+#block-emailmodule-email #responsible-email-form button
 {
 	
 	-webkit-appearance: none;
@@ -117,63 +120,69 @@
 	-webkit-writing-mode: horizontal-tb;
 }
 
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto>p,
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto .checkbox span,
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto .checkbox span a
+#block-emailmodule-email #responsible-email-form label,
+#block-emailmodule-email #responsible-email-form  label a,
+#block-emailmodule-email #responsible-email-form input,
+#block-emailmodule-email #responsible-email-form textarea
 {
 	color:#e47516;
 }
-
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto
+#block-emailmodule-email label a
 {
-	background-color: #fbeade;
+	text-decoration: underline;
 }
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto #textForm
+#block-emailmodule-email #responsible-email-form input:focus,
+#block-emailmodule-email #responsible-email-form textarea:focus
 {
-	color: rgb(228, 117, 22);
+	border:1px solid;
 }
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto #textForm:focus
+.node-type-grupo-investigaci-n #block-emailmodule-email #responsible-email-form input:focus,
+.node-type-grupo-investigaci-n #block-emailmodule-email #responsible-email-form textarea:focus
 {
-	border: 1px solid #e47516;
+	border-color:#e47516;
     box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(228,117,22,.6);
 }
-.node-type-producto #block-emailmodule-email .contacto
+#block-emailmodule-email #responsible-email-form label[for="edit-polity"]
 {
-	background-color: #e2eaf4;
+	display: block;
 }
-
-.node-type-producto #block-emailmodule-email .contacto>p,
-.node-type-producto #block-emailmodule-email .contacto .checkbox span,
-.node-type-producto #block-emailmodule-email .contacto .checkbox span a
-.node-type-producto #block-emailmodule-email .contacto >p,
-.node-type-producto #block-emailmodule-email .contacto .checkbox span,
-.node-type-producto #block-emailmodule-email .contacto .checkbox span a
+.node-type-producto #block-emailmodule-email #responsible-email-form label,
+.node-type-producto #block-emailmodule-email #responsible-email-form label a,
+.node-type-producto #block-emailmodule-email #responsible-email-form input,
+.node-type-producto #block-emailmodule-email #responsible-email-form textarea,
+.node-type-patente #block-emailmodule-email #responsible-email-form label,
+.node-type-patente #block-emailmodule-email #responsible-email-form label a,
+.node-type-patente #block-emailmodule-email #responsible-email-form input,
+.node-type-patente #block-emailmodule-email #responsible-email-form textarea
 {
-	color:#3b75b3
+	color:#3b75b3;
 }
-
-.node-type-producto #block-emailmodule-email .contacto #textForm
+.node-type-producto #block-emailmodule-email #responsible-email-form input:focus,
+.node-type-patente #block-emailmodule-email #responsible-email-form textarea:focus
 {
-	color:rgb(59, 117, 179);
+	border-color: #3b75b3;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.0745098) inset, 0px 0px 8px rgba(82, 168, 236, 0.6) ;
 }
-.node-type-producto #block-emailmodule-email .contacto #textForm:focus
-{
-	border:1px solid rgba(82, 168, 236, 0.8);
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset, rgba(82, 168, 236, 0.6) 0px 0px 8px 0px;
-}
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto button
+#block-emailmodule-email #responsible-email-form button
 {
 	background-color:  #e47516;
 }
-.node-type-grupo-investigaci-n #block-emailmodule-email .contacto button:hover
+#block-emailmodule-email #responsible-email-form button:hover
 {
 	background-color: #F79A0C;
 }
-.node-type-producto #block-emailmodule-email .contacto button
+.node-type-producto #block-emailmodule-email #responsible-email-form button,
+.node-type-patente #block-emailmodule-email #responsible-email-form button
 {
 	background-color: #386EA9;
 }
-.node-type-producto #block-emailmodule-email .contacto button:hover
+.node-type-producto #block-emailmodule-email #responsible-email-form button:hover,
+.node-type-patente #block-emailmodule-email #responsible-email-form button:hover
 {
 	background-color: #548DCC;
+}
+#block-emailmodule-email #responsible-email-form .error-processed input
+{
+	border:1px solid rgb(255,0,0);
+	box-shadow: rgb(255,0,0) 0px 1px 1px 0px inset,rgb(255,0,0) 0px 0px 8px 0px;
 }

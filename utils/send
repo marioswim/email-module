@@ -1,0 +1,6 @@
+<?php
+
+function sendMail($params)
+{
+	return drupal_mail($params["module"],"{".$params["module"]."}_{".uniqid()."}",$params["to"],$params["language"])
+}
