@@ -49,42 +49,47 @@ function responsible_email_form($form)
 
 	$form["#id"]="responsible-email-form";
 	$form["name"]=array(
-		'#type' => 'textfield',
+		"#title" => t("Name"),
 		'#required' => TRUE,
+		'#type' => 'textfield',
 		'#weight' => 0,
 		"#attributes" =>array('placeholder' => t("Name") ),
 		);
 	$form["email"]=array(
+		"#title" => "Email",
 		'#type' => 'textfield',
-		'#required' => TRUE,
 		'#weight' => 1,
+		'#required' => TRUE,
 		"#attributes" =>array('placeholder' => "Email" ),
 		);
 	$form["telephone"]=array(
+		"#title" => t("Telephone"),
 		'#type' => 'textfield',
-		'#required' => TRUE,
 		'#weight' => 2,
+		'#required' => TRUE,
 		"#attributes" =>array('placeholder' => t("Telephone") ),
 		);
 	$form["subject"]=array(
+		"#title" => t("Subject"),
 		'#type' => 'textfield',
-		'#required' => TRUE,
 		'#weight' => 3,
+		'#required' => TRUE,
 		"#attributes" =>array('placeholder' => t("Subject") ),
 		);
 	$form["message"]=array(
+		"#title" => t("Message"),
 		'#type' => 'textarea',
-		'#required' => TRUE,
 		"#rows" => 6,
 		'#weight' => 4,
+		'#required' => TRUE,
 		"#attributes" =>array('placeholder' => t("Message") ),
 		);
-	$form["polity"]=array(
+	/*$form["polity"]=array(
 		'#type' => 'checkbox',
 		"#title" => $title,
 		'#required' => TRUE,
 		'#weight' => 5,
-		);
+		);*/
 	/*$form["submit_button"]=array(
 		'#type' => 'submit',
 		'#value' => t("Send"),
@@ -99,8 +104,6 @@ function responsible_email_form($form)
 }
 function responsible_email_form_validate($form,&$form_state)
 {
-	
-
 	if(preg_match_all("/\d/",$form_state["values"]["name"]))
 	{
 		form_set_error("name",t("Invalid name"));
@@ -141,40 +144,16 @@ function EmailModule_mail_send($form_values)
   // Specify 'to' and 'from' addresses.
   $to = get_email_responsible();
   $from = variable_get('site_mail', '');
-
-  // "params" loads in additional context for email content completion in
-  // hook_mail(). In this case, we want to pass in the values the user entered
-  // into the form, which include the message body in $form_values['message'].
   $params = $form_values;
-
-  // The language of the e-mail. This will one of three values:
-  // - user_preferred_language(): Used for sending mail to a particular website
-  //   user, so that the mail appears in their preferred language.
-  // - global $language: Used when sending a mail back to the user currently
-  //   viewing the site. This will send it in the language they're currently
-  //   using.
-  // - language_default(): Used when sending mail to a pre-existing, 'neutral'
-  //   address, such as the system e-mail address, or when you're unsure of the
-  //   language preferences of the intended recipient.
-  //
-  // Since in our case, we are sending a message to a random e-mail address that
-  // is not necessarily tied to a user account, we will use the site's default
-  // language.
   $language = language_default();
-
-  // Whether or not to automatically send the mail when drupal_mail() is
-  // called. This defaults to TRUE, and is normally what you want unless you
-  // need to do additional processing before drupal_mail_send() is called.
   $send = TRUE;
-  // Send the mail, and check for success. Note that this does not guarantee
-  // message delivery; only that there were no PHP-related issues encountered
-  // while sending.
   $result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
-  if ($result['result'] == TRUE) {
+  if ($result['result'] == TRUE) 
+  {
     drupal_set_message(t('Your message has been sent.'));
   }
-  else {
-
+  else 
+  {
     drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
   }
 

@@ -181,8 +181,8 @@
 {
 	background-color: #548DCC;
 }
-#block-emailmodule-email #responsible-email-form .error-processed input
+#block-emailmodule-email #responsible-email-form .error
 {
-	border:1px solid rgb(255,0,0);
+	border:1px solid rgb(255,0,0) !important;
 	box-shadow: rgb(255,0,0) 0px 1px 1px 0px inset,rgb(255,0,0) 0px 0px 8px 0px;
 }
