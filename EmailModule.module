@@ -56,11 +56,11 @@ function responsible_email_form($form)
 		"#attributes" =>array('placeholder' => t("Name") ),
 		);
 	$form["email"]=array(
-		"#title" => "Email",
+		"#title" => t("Mail"),
 		'#type' => 'textfield',
 		'#weight' => 1,
 		'#required' => TRUE,
-		"#attributes" =>array('placeholder' => "Email" ),
+		"#attributes" =>array('placeholder' => t("Mail") ),
 		);
 	$form["telephone"]=array(
 		"#title" => t("Telephone"),
@@ -129,32 +129,43 @@ function EmailModule_mail($key, &$message, $params)
 	switch ($key) {
 	    // Send a simple message from the contact form.
 	    case 'contact_message':
-	      $message['subject'] = '[MarketPlace]: '.$params["subject"];
-	      $message['body'][] = check_plain($params['message']);
+  			$node = menu_get_object();
+  			
+	    	$message['subject'] = '[MarketPlace]: '.$params["subject"];
+	      	$message['body'][] = "Mensaje Enviado desde:\n\t".
+	      	'<a href="http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"].'">'.check_plain($node->title).'</a>'."\n\n".
+	      	check_plain($params['message']).
+	      		"\n\n".
+	      		check_plain($params['name'])."\n".
+	      		check_plain("Tlf: ".$params['telephone'])."\n".
+	      		check_plain("Email: ".$params['email']);
+	      		
 	      break;
 	  }
 }
 function EmailModule_mail_send($form_values)
 {
-	  // All system mails need to specify the module and template key (mirrored from
-  // hook_mail()) that the message they want to send comes from.
-  $module = 'EmailModule';
-  $key = 'contact_message';
+	// All system mails need to specify the module and template key (mirrored from
+	// hook_mail()) that the message they want to send comes from.
+	$module = 'EmailModule';
+	$key = 'contact_message';
 
-  // Specify 'to' and 'from' addresses.
-  $to = get_email_responsible();
-  $from = variable_get('site_mail', '');
-  $params = $form_values;
-  $language = language_default();
-  $send = TRUE;
-  $result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
-  if ($result['result'] == TRUE) 
-  {
-    drupal_set_message(t('Your message has been sent.'));
-  }
-  else 
-  {
-    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
-  }
+	// Specify 'to' and 'from' addresses.
+	$to =get_email_responsible();
+	$from = variable_get('site_mail', '');
+	$params = $form_values;
+	
+	$language = language_default();
+	$send = TRUE;
+	//$result=false;
+	$result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
+	if ($result['result'] == TRUE) 
+	{
+		drupal_set_message(t('Your message has been sent.'));
+	}
+	else 
+	{
+		drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+	}
 
 }
